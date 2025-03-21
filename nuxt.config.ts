@@ -4,9 +4,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    '@nuxt/eslint',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/icon',
+    '@nuxtjs/google-fonts',
     '@nuxt/image',
-    '@nuxt/fonts',
-    '@nuxt/ui'
-  ]
+  ],
+
+  googleFonts: {
+    families: {
+      Montserrat: true,
+    }
+  }
 })
