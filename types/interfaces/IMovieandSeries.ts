@@ -1,4 +1,4 @@
-export interface ISeries {
+export interface IMovieandSeries {
   Title: string;
   Year: string;
   imdbID: string;
