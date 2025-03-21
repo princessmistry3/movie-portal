@@ -1,23 +1,25 @@
 <template>
   <div>
     <!-- Not sure about the hero -->
-    <div v-if="featuredMovie" class="relative rounded-xl overflow-hidden mb-8 h-[500px]">
-      <NuxtImg
-        v-if="featuredMovie.Poster && featuredMovie.Poster !== 'N/A'"
-        :src="featuredMovie.Poster"
-        :alt="featuredMovie.Title"
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-        <h2 class="text-4xl font-bold text-white mb-2">{{ featuredMovie.Title }}</h2>
-        <div class="flex items-center mb-4">
-          <Icon name="heroicons:star" class="text-yellow-500 h-5 w-5 mr-1" />
-          <span class="text-white">{{6 }}</span>
-          <span class="mx-2 text-white">•</span>
-          <span class="text-white">{{ featuredMovie.Year }}</span>
+    <NuxtLink v-if="featuredMovie" :to="`/${featuredMovie.imdbID}`">
+      <div class="relative rounded-xl overflow-hidden mb-8 h-[500px]">
+        <NuxtImg
+          v-if="featuredMovie.Poster && featuredMovie.Poster !== 'N/A'"
+          :src="featuredMovie.Poster"
+          :alt="featuredMovie.Title"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
+          <h2 class="text-4xl font-bold text-white mb-2">{{ featuredMovie.Title }}</h2>
+          <div class="flex items-center mb-4">
+            <Icon name="heroicons:star" class="text-yellow-500 h-5 w-5 mr-1" />
+            <span class="text-white">{{6 }}</span>
+            <span class="mx-2 text-white">•</span>
+            <span class="text-white">{{ featuredMovie.Year }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </NuxtLink>
 
     <!-- Loader --->
     <div v-if="pending" class="flex justify-center py-12">
@@ -41,22 +43,24 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div v-for="movie in popularMovies" :key="movie.imdbID" class="bg-white rounded-lg shadow-md overflow-hidden">
-            <NuxtImg
-              v-if="movie.Poster && movie.Poster !== 'N/A'"
-              :src="movie.Poster"
-              :alt="movie.Title"
-              class="w-full h-64 object-cover"
-            />
-            <div v-else class="w-full h-64 bg-gray-200 flex items-center justify-center">
-              <span class="text-gray-400">No image available</span>
-            </div>
-            <div class="p-4">
-              <h3 class="text-lg font-semibold mb-1">{{ movie.Title }}</h3>
-              <div class="flex items-center">
-                <Icon name="heroicons:calendar" class="text-gray-500 h-4 w-4 mr-1" />
-                <span class="text-sm">{{ movie.Year }}</span>
+            <NuxtLink :to="`/${movie.imdbID}`">
+              <NuxtImg
+                v-if="movie.Poster && movie.Poster !== 'N/A'"
+                :src="movie.Poster"
+                :alt="movie.Title"
+                class="w-full h-64 object-cover"
+              />
+              <div v-else class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-400">No image available</span>
               </div>
-            </div>
+              <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">{{ movie.Title }}</h3>
+                <div class="flex items-center">
+                  <Icon name="heroicons:calendar" class="text-gray-500 h-4 w-4 mr-1" />
+                  <span class="text-sm">{{ movie.Year }}</span>
+                </div>
+              </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -69,22 +73,24 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div v-for="series in popularSeries" :key="series.imdbID" class="bg-white rounded-lg shadow-md overflow-hidden">
-            <NuxtImg
-              v-if="series.Poster && series.Poster !== 'N/A'"
-              :src="series.Poster"
-              :alt="series.Title"
-              class="w-full h-64 object-cover"
-            />
-            <div v-else class="w-full h-64 bg-gray-200 flex items-center justify-center">
-              <span class="text-gray-400">No image available</span>
-            </div>
-            <div class="p-4">
-              <h3 class="text-lg font-semibold mb-1">{{ series.Title }}</h3>
-              <div class="flex items-center">
-                <Icon name="heroicons:calendar" class="text-gray-500 h-4 w-4 mr-1" />
-                <span class="text-sm">{{ series.Year }}</span>
+            <NuxtLink :to="`/${series.imdbID}`">
+              <NuxtImg
+                v-if="series.Poster && series.Poster !== 'N/A'"
+                :src="series.Poster"
+                :alt="series.Title"
+                class="w-full h-64 object-cover"
+              />
+              <div v-else class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-400">No image available</span>
               </div>
-            </div>
+              <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">{{ series.Title }}</h3>
+                <div class="flex items-center">
+                  <Icon name="heroicons:calendar" class="text-gray-500 h-4 w-4 mr-1" />
+                  <span class="text-sm">{{ series.Year }}</span>
+                </div>
+              </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
