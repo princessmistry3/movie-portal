@@ -30,6 +30,15 @@
               </NuxtLink>
             </li>
             <li>
+              <NuxtLink to="/recentlyViewed" class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200"
+                :class="{ 'bg-gray-700': currentRoute === '/recentlyViewed' }">
+                <span class="flex items-center">
+                  <Icon name="heroicons:eye" class="h-5 w-5 mr-2" />
+                  Recently Viewed
+                </span>
+              </NuxtLink>
+            </li>
+            <li>
               <NuxtLink to="/movies" class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200"
                 :class="{ 'bg-gray-700': currentRoute === '/movies' }">
                 <span class="flex items-center">

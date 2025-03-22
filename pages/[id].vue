@@ -60,10 +60,21 @@ const { fetchItemDetails } = useMoviesandSeriesDetailsAPI();
 
 onMounted(async () => {
   try {
-    item.value = await fetchItemDetails(id);
+    const response = await fetchItemDetails(id);
+    item.value = response;
 
-    if (!item.value) {
+    if (!item.value || item.value.Response === "False") {
       notFoundMessage.value = `Item not found`;
+    } else {
+      let recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+      const index = recentlyViewed.findIndex(viewedItem => viewedItem.imdbID === item.value.imdbID);
+      if (index === -1) {
+        recentlyViewed.push(item.value);
+        if (recentlyViewed.length > 10) {
+          recentlyViewed.shift();
+        }
+        localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+      }
     }
   } catch (error) {
     console.error('Failed to load item details', error);
