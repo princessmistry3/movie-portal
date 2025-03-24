@@ -1,19 +1,21 @@
 <template>
   <div>
-    <!-- Not sure about the hero -->
+    <!-- Hero Section -->
     <NuxtLink v-if="featuredMovie" :to="`/${featuredMovie.imdbID}`">
       <div class="relative rounded-xl overflow-hidden mb-8 h-[500px]">
-        <NuxtImg
+        <div
           v-if="featuredMovie.Poster && featuredMovie.Poster !== 'N/A'"
-          :src="featuredMovie.Poster"
-          :alt="featuredMovie.Title"
-          class="w-full h-full object-cover"
-        />
+          class="w-full h-full hero-background"
+          :style="{ backgroundImage: `url(${featuredMovie.Poster})` }"
+        ></div>
+        <div v-else class="w-full h-full bg-gray-200 flex items-center justify-center">
+          <span class="text-gray-400">No image available</span>
+        </div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
           <h2 class="text-4xl font-bold text-white mb-2">{{ featuredMovie.Title }}</h2>
           <div class="flex items-center mb-4">
             <Icon name="heroicons:star" class="text-yellow-500 h-5 w-5 mr-1" />
-            <span class="text-white">{{6 }}</span>
+            <span class="text-white">{{ 6 }}</span>
             <span class="mx-2 text-white">•</span>
             <span class="text-white">{{ featuredMovie.Year }}</span>
           </div>
@@ -21,12 +23,12 @@
       </div>
     </NuxtLink>
 
-    <!-- Loader --->
+    <!-- Loader -->
     <div v-if="pending" class="flex justify-center py-12">
       <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
     </div>
 
-    <!-- catering for erors -->
+    <!-- Catering for errors -->
     <div v-else-if="error" class="text-center py-12 text-red-600">
       <p class="text-xl">{{ error.message || 'Failed to load content' }}</p>
       <button @click="refresh" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -65,7 +67,7 @@
         </div>
       </div>
 
-      <!-- featured TV Shows -->
+      <!-- Featured TV Shows -->
       <div class="mb-8">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-2xl font-bold">Featured TV Shows</h2>
@@ -107,18 +109,22 @@ const moviesAPI = useMoviesAPI();
 const seriesAPI = useSeriesAPI();
 
 // Fetch data
-const { data: moviesData, pending: moviesPending, error: moviesError, refresh: refreshMovies } = 
-  useAsyncData('popularMovies', () => moviesAPI.fetchMovies());
+const { data: moviesData, pending: moviesPending, error: moviesError, refresh: refreshMovies } = useAsyncData(
+  'popularMovies',
+  () => moviesAPI.fetchMovies()
+);
 
-const { data: seriesData, pending: seriesPending, error: seriesError, refresh: refreshSeries } = 
-  useAsyncData('popularSeries', () => seriesAPI.fetchSeries());
+const { data: seriesData, pending: seriesPending, error: seriesError, refresh: refreshSeries } = useAsyncData(
+  'popularSeries',
+  () => seriesAPI.fetchSeries()
+);
 
 const popularMovies = computed(() => moviesData.value?.Search?.slice(0, 4) || []);
 const popularSeries = computed(() => seriesData.value?.Search?.slice(0, 4) || []);
 
 const featuredMovie = computed(() => {
   const movies = moviesData.value?.Search || [];
-  return movies.find(movie => movie.Poster && movie.Poster !== 'N/A') || movies[0] || null;
+  return movies.find((movie) => movie.Poster && movie.Poster !== 'N/A') || movies[0] || null;
 });
 
 const pending = computed(() => moviesPending.value || seriesPending.value);
@@ -130,3 +136,13 @@ const refresh = () => {
   refreshSeries();
 };
 </script>
+
+<style scoped>
+.hero-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px); 
+}
+</style>

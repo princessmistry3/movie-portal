@@ -55,7 +55,7 @@
         <div>
           <button 
             type="submit" 
-            class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            class="bg-gray-800 text-white py-2 px-6 rounded-lg hover:bg-gray-500 disabled:opacity-50"
             :disabled="formSubmitting"
           >
             <span v-if="formSubmitting">
