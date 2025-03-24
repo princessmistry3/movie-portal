@@ -1,9 +1,11 @@
 <template>
   <div class="min-h-screen bg-gray-100">
     <!-- Fixed Header -->
-    <header class="fixed top-0 left-0 right-0 bg-gray-800 text-white shadow-md z-30">
+    <header class="fixed top-0 left-0 right-0 bg-gray-800 text-white shadow-2xl z-50">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Movie Portal</h1>
+        <NuxtLink to="/">
+          <NuxtImg src="/images/logo.png" class="h-12" />
+        </NuxtLink>
         <!-- Mobile menu button -->
         <button @click="toggleSidebar" class="md:hidden p-2">
           <Icon name="heroicons:bars-3" class="h-6 w-6" />
@@ -18,7 +20,7 @@
           'bg-gray-800 text-white w-64 min-h-screen fixed left-0 top-16 transition-transform duration-300 ease-in-out z-20',
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         ]">
-        <nav class="p-4">
+        <nav class="p-4 mt-4">
           <ul class="space-y-4">
             <li>
               <NuxtLink to="/" class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200" 

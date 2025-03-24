@@ -1,23 +1,35 @@
-# Nuxt Minimal Starter
+# Movie Portal
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A web application for browsing and discovering movies and series.
+
+## Features
+- Browse Movies and Series
+- Search Functionality
+- Details Page
+- Moveies Page
+- Series Page
+- Recently Viewed
+- Contact Page
+- Responsive Design
+- Mobile-Friendly Sidebar
+
+## Technologies Used
+- Nuxt.js
+- Vue.js
+- Tailwind CSS
+- OMDb API
+- Iconify
+- Local Storage
+
+## Prerequisites
+- Node.js (version 18 or higher)
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -25,51 +37,5 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

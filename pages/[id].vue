@@ -1,8 +1,10 @@
 <template>
   <div>
-    <button @click="goBack" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
-      Back
-    </button>
+    <div class="flex justify-end mb-4">
+      <button @click="goBack" class="bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
+        Back
+      </button>
+    </div>
 
     <div v-if="item">
       <h1 class="text-3xl font-bold mb-4">{{ item.Title }}</h1>
